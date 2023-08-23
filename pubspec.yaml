@@ -1,0 +1,23 @@
+name: chainlink_flutter
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies:
+  camera: ^0.10.5+3
+  flutter:
+    sdk: flutter
+  google_mlkit_text_recognition: ^0.10.0
+  image_picker: ^1.0.2
+  permission_handler: ^10.4.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
