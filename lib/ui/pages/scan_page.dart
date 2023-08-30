@@ -57,54 +57,80 @@ class _ScanPageState extends State<ScanPage> with WidgetsBindingObserver {
     return FutureBuilder(
       future: _future,
       builder: (context, snapshot) {
-        return Stack(
-          children: [
-            if (_isPermissionGranted)
-              FutureBuilder<List<CameraDescription>>(
-                future: availableCameras(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    _initCameraController(snapshot.data!);
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: Stack(
+            children: [
+              if (_isPermissionGranted)
+                FutureBuilder<List<CameraDescription>>(
+                  future: availableCameras(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      _initCameraController(snapshot.data!);
+        
+                      return Container(
+                        margin: EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Hello Scan', style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'PoppinsExtrabold'),),
+                            SizedBox(height: 10,),
+                            Container(
+                              
+                              child: Center(
+                                child: ClipRRect(borderRadius: BorderRadius.circular(20), child: CameraPreview(_cameraController!),),
+                              ),
+                            ),
+                             Container(
 
-                    return Center(child: CameraPreview(_cameraController!));
-                  } else {
-                    return const LinearProgressIndicator();
-                  }
-                },
-              ),
-            Scaffold(
-              appBar: AppBar(
-                title: const Text('Text Recognition Sample'),
-              ),
-              backgroundColor: _isPermissionGranted ? Colors.transparent : null,
-              body: _isPermissionGranted
-                  ? Column(
-                      children: [
-                        Expanded(
-                          child: Container(),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(bottom: 30.0),
-                          child: Center(
-                            child: ElevatedButton(
-                              onPressed: _scanImage,
-                              child: const Text('Scan text'),
+                            
+                            child: Center(
+                              child: ElevatedButton(
+                                onPressed: _scanImage,
+                                child: const Text('Scan text'),
+                              ),
                             ),
                           ),
+                          ],
                         ),
-                      ],
-                    )
-                  : Center(
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                        child: const Text(
-                          'Camera permission denied',
-                          textAlign: TextAlign.center,
+                      );
+                    } else {
+                      return const LinearProgressIndicator();
+                    }
+                  },
+                ),
+              /*Scaffold(
+                backgroundColor: Colors.white,
+                body: _isPermissionGranted
+                    ? Column(
+                        children: [
+                          Expanded(
+                            child: Container(),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(bottom: 30.0),
+                            child: Center(
+                              child: ElevatedButton(
+                                onPressed: _scanImage,
+                                child: const Text('Scan text'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Center(
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                          child: const Text(
+                            'Camera permission denied',
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
-                    ),
-            ),
-          ],
+              ),*/
+            ],
+          ),
         );
       },
     );

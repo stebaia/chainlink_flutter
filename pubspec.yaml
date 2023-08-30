@@ -13,6 +13,8 @@ dependencies:
   google_mlkit_text_recognition: ^0.10.0
   image_picker: ^1.0.2
   permission_handler: ^10.4.3
+  add_2_calendar: ^2.1.2
+  share_plus: ^7.1.0
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +23,14 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: LeagueSpartan
+      fonts:
+        - asset: fonts/league_spartanreg.ttf
+    - family: Poppins
+      fonts:
+        - asset: fonts/poppins_regular.ttf
+    - family: PoppinsExtrabold
+      fonts:
+        - asset: fonts/Poppins-ExtraBold.ttf
+
